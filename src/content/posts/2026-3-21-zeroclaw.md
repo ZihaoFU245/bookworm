@@ -3,7 +3,7 @@ title: Running you own Jarvis on a 15$ computer
 date: 2026-03-21T00:00:00.000Z
 image: /assets/2026-03-21-resources/5.jpeg
 categories:
-  - general
+  - Tech
 authors:
   - Zihao Fu
 draft: false

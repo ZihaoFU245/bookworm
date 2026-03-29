@@ -3,7 +3,7 @@ title: "Building My Self-Hosted Digital Ecosystem :)"
 date: 2025-11-28T00:00:00.000Z
 image: "https://images.alphacoders.com/100/thumb-1920-1003903.jpg"
 categories:
-  - General
+  - Trash
 authors:
   - Zihao Fu
 draft: false

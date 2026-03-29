@@ -3,7 +3,7 @@ title: "My Fantastic Experience with gpt-oss-20b! \U0001F680"
 date: 2025-08-06T00:00:00.000Z
 image: /assets/2025-08-06-resources/cover.png
 categories:
-  - General
+  - Trash
 authors:
   - Zihao Fu
 draft: false

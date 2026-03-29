@@ -3,7 +3,7 @@ title: "Projects: LM-Studio ToolPack / Bundle"
 date: 2025-10-01T00:00:00.000Z
 image: /assets/2025-10-01-resources/teaser.png
 categories:
-  - General
+  - Trash
 authors:
   - Zihao Fu
 draft: false

@@ -10,6 +10,9 @@ authors:
 draft: false
 ---
 
+# 伯克利的夏天，是五彩斑斓的告别
+> *如果这个夏天可以用颜色来描绘，那一定不止一种：有燃烧的红，有离别的灰，有忙碌的橙，有成长的金黄，也有无法说出口的蓝*
+
 <style>
 .color-chip {
   cursor: pointer; border-bottom: 1px dotted currentColor; padding: 0 .1em;
@@ -20,8 +23,6 @@ draft: false
 
 <script defer src="/assets/js/color-sequence.js"></script>
 
-# 伯克利的夏天，是五彩斑斓的告别
-> *如果这个夏天可以用颜色来描绘，那一定不止一种：有燃烧的红，有离别的灰，有忙碌的橙，有成长的金黄，也有无法说出口的蓝*
 
 ## 红，是伯克利跳动的心脏
 伯克利在我眼里是红色的。

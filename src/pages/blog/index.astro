@@ -18,7 +18,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
       <blockquote class="mb-8 border-l-4 border-primary pl-4 text-lg text-text">
         This page is updated frequently.
       </blockquote>
-      <h1 class="h2 mb-10">Here are all my blogs!</h1>
+      <h2 class="h2 mb-10">Collection of all my blog posts</h2>
       <Posts posts={currentPosts} className="mb-16" />
       <Pagination section="blog" currentPage={1} totalPages={totalPages} />
     </div>

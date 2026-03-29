@@ -3,7 +3,7 @@ title: End of beginning
 date: 2025-12-19T00:00:00.000Z
 image: /assets/2025-12-19-resources/teaser.jpg
 categories:
-  - ChitChat
+  - Trash
 authors:
   - Zihao Fu
 draft: false

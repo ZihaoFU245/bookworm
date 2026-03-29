@@ -3,7 +3,7 @@ title: DIY Raspberry Pi router tutorial (MT7925)
 date: 2026-03-05T00:00:00.000Z
 image: /assets/2026-03-05-resources/5.jpeg
 categories:
-  - general
+  - Tech
 authors:
   - Zihao Fu
 draft: false
