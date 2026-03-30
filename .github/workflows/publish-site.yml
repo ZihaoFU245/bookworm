@@ -36,6 +36,11 @@ jobs:
       - name: Build site
         run: corepack yarn build
 
+      - name: Compress assets
+        run: |
+          chmod +x ./compress.sh
+          ./compress.sh
+
       - name: Copy LFS rules into publish directory
         run: cp .gitattributes dist/.gitattributes
 
