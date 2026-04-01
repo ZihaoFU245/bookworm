@@ -1,5 +1,17 @@
 {
   "files.associations": {
     "*.mdx": "markdown"
-  }
+  },
+  "cSpell.words": [
+    "dport",
+    "dstnat",
+    "iifname",
+    "nexthdr",
+    "oifname",
+    "postrouting",
+    "prerouting",
+    "saddr",
+    "srcnat",
+    "wlan"
+  ]
 }
