@@ -40,6 +40,11 @@ export const plainify = (content: string) => {
   return stripHTML;
 };
 
+// excerptify
+export const excerptify = (content: string, wordLimit = 36) => {
+  return plainify(content).split(/\s+/).slice(0, wordLimit).join(" ");
+};
+
 // strip entities for plainify
 const htmlEntityDecoder = (htmlWithEntities: string) => {
   let entityList: { [key: string]: string } = {

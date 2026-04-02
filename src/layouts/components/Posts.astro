@@ -1,7 +1,7 @@
 ---
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
-import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
+import { excerptify, humanize, slugify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { BiCalendarEdit, BiCategoryAlt } from "react-icons/bi";
@@ -92,7 +92,9 @@ const { className, posts, fluid } = Astro.props;
             {post.data.title}
           </a>
         </h3>
-        <p class="text-text line-clamp-2">{plainify(post.body ?? "")}</p>
+        <p class="text-text line-clamp-2">
+          {post.data.description ?? excerptify(post.body ?? "")}
+        </p>
       </div>
     ))
   }
