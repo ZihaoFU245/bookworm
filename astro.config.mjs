@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig, sharpImageService } from "astro/config";
+import remarkGitHubCallouts from "./src/lib/remarkGitHubCallouts.mjs";
 import remarkTocHeadings from "./src/lib/remarkTocHeadings.mjs";
 import config from "./src/config/config.json";
 
@@ -31,7 +32,7 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [remarkTocHeadings],
+    remarkPlugins: [remarkGitHubCallouts, remarkTocHeadings],
     shikiConfig: { theme: "one-dark-pro", wrap: true },
   },
 });

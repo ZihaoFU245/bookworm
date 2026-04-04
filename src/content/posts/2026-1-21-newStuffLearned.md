@@ -72,7 +72,7 @@ different backend servers while only using one port.
 
 ### A snippet from my server setup
 
-```conf
+```nginx
 stream {
   map $ssl_preread_server_name $tcp_backend {
       hostnames;
@@ -128,6 +128,7 @@ hardware acceleration (AES-NI), performance can surpass WireGuard in some scenar
 
 ## Reverse Shell {#reverse-shell}
 
+> [!IMPORTANT]
 > **Disclaimer:** This reverse shell project is created strictly for educational and experimental purposes in controlled environments only. I do not condone or take responsibility for any misuse, unauthorized access, or illegal activity resulting from this work.
 
 A reverse shell is often used as a backdoor; it can bypass firewalls easily. It’s often considered a

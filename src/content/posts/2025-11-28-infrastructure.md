@@ -150,26 +150,40 @@ Explicit and strict.
 
 **Docker** containers are a level above **UFW**, which means **UFW** cannot block public requests to my **Pi-hole** container.
 
-<div class="mermaid">
-flowchart LR
-    ext[External Client, nslookup your.vps.ip] -->|UDP/TCP 53| wanIP[Host Public IP]
+```txt
+External Client
+     |
+     |  DNS query UDP/TCP 53
+     v
++----------------+
+| Host Public IP |
++----------------+
+        |
+        v
++-------------------------------+
+| Debian VPS / Linux Kernel     |
++-------------------------------+
+        |
+        | forwarded into Docker NAT path
+        v
++-------------------------------+
+| Docker iptables / DNAT        |
+| -> 172.18.0.x:53              |
++-------------------------------+
+        |
+        v
++-------------------------------+
+| Pi-hole container             |
+| listens on port 53            |
++-------------------------------+
+        |
+        | DNS reply
+        v
+External Client
 
-    subgraph Host_OS [Host Debian VPS]
-        direction LR
-        wanIP --> kernel[Linux Kernel<br/>netfilter / iptables]
-
-        subgraph UFW [UFW default deny]
-            direction LR
-            ufwIn[ufw-user-input]
-        end
-
-        kernel -->|Docker injects NAT rules| dockerIpt[Docker iptables<br/>DOCKER-* chains]
-        dockerIpt -->|DNAT to 172.18.0.x:53| piholeDocker[Pi-hole Container<br/>port 53]
-    end
-
-    piholeDocker -->|DNS reply| ext
-
-</div>
+[ UFW default deny exists on host input side, but this traffic is
+  illustrated as reaching Docker's NAT path instead of stopping there ]
+```
 
 This made my **Pi-hole** a public container, once I went to check the admin panel of my **Pi-hole**,
 there are about 1700 active clients using my resolver. Lots of them are from Brazil.
@@ -336,14 +350,3 @@ I should remove these AI driven blog posts(: Those are in such low quality.
 > I got a new domain zihaofu245.cloud, don't know what to serve yet. Open for ideas.
 
 > This blog is all written by me, no LLM involved.
-
-<!-- Mermaid JS (single-use) -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  mermaid.initialize({
-    startOnLoad: true,
-    securityLevel: "loose"  // enables <br/> in diagram labels
-  });
-});
-</script>

@@ -98,6 +98,52 @@
   word-break: break-word;
 }
 
+.content blockquote.callout {
+  @apply my-6 rounded-lg border-l-4 px-5 py-4 text-base leading-7;
+  background-color: var(--callout-bg);
+  border-left-color: var(--callout-accent);
+  color: var(--callout-text);
+}
+
+.content blockquote.callout p {
+  @apply my-0;
+}
+
+.content blockquote.callout .callout-title {
+  @apply mb-2 text-sm font-semibold tracking-wide;
+  color: var(--callout-accent);
+}
+
+.content blockquote.callout.callout-note {
+  --callout-accent: #0969da;
+  --callout-bg: #ddf4ff;
+  --callout-text: #0f172a;
+}
+
+.content blockquote.callout.callout-tip {
+  --callout-accent: #1a7f37;
+  --callout-bg: #dafbe1;
+  --callout-text: #0f172a;
+}
+
+.content blockquote.callout.callout-important {
+  --callout-accent: #8250df;
+  --callout-bg: #fbefff;
+  --callout-text: #0f172a;
+}
+
+.content blockquote.callout.callout-warning {
+  --callout-accent: #9a6700;
+  --callout-bg: #fff8c5;
+  --callout-text: #0f172a;
+}
+
+.content blockquote.callout.callout-caution {
+  --callout-accent: #cf222e;
+  --callout-bg: #ffebe9;
+  --callout-text: #0f172a;
+}
+
 /* tab */
 .tab {
   @apply overflow-hidden rounded-lg border border-border;

@@ -57,10 +57,14 @@ Assemble the hardware before you continue.
 
 ## 1. Check Wi-Fi card compatibility {#Driver}
 
+> [!IMPORTANT]
+> Latest Raspberry Pi 5 kernel fully supports `mt7925`, so you no longer need to compile the kernel yourself.
+
 My Wi-Fi card (MT7925) is not fully supported on Raspberry Pi OS with kernel `6.12.y`.
 After I plugged it in, the Wi-Fi interface did not appear. If you are on newer kernels,
 it might work out of the box. I had to rebuild the kernel myself. Below is how to do it.
 
+> [!NOTE]
 > If your Wi-Fi card driver already works and you can see it in `ip addr`, skip this step.
 
 If you are using Intel cards, like BE200 or AX210, they are likely supported. You should
@@ -365,9 +369,10 @@ sudo systemctl restart dnsmasq
 
 From this point, your Wi-Fi Access Point, DHCP and DNS is done. Last puzzle is routing.
 
+> [!TIP]
 > Below you can consider it as a branch, if you don't need UPnP, finish this section and your router is done.
- Otherwise, continue to next
-section. Remember routing requires sysctl and firewall confiuration, you can always come back and it may help.
+> Otherwise, continue to next
+> section. Remember routing requires sysctl and firewall confiuration, you can always come back and it may help.
 
 ```bash
 echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf # This is enables IP packets forwarding
@@ -391,6 +396,7 @@ table ip filter {
 
 ## 4. miniupnpd {#UPnP}
 
+> [!WARNING]
 > UPnP: Universal Plug and Play. It can open firewall ports automatically.
 > It works well for game consoles, BitTorrent, Tailscale, etc., offering direct-connection capabilities,
 > but it requires proper security enforcement during setup.
@@ -610,55 +616,55 @@ Run `sudo nft list ruleset`. You should see a non-empty filter table with rules 
 
 ```conf
 table inet filter {
-	chain input {
-		type filter hook input priority filter; policy drop;
-		iif "lo" accept
-		ct state established,related accept
-		iif "eth0" udp dport { 40000, 41641 } accept
-		iif "wlan1" udp dport { 53, 67, 1900, 5351 } accept
-		iif "wlan1" tcp dport 53 accept
-		iif "tailscale0" accept
-		ip protocol icmp accept
-		ip6 nexthdr ipv6-icmp accept
-	}
+    chain input {
+      type filter hook input priority filter; policy drop;
+      iif "lo" accept
+      ct state established,related accept
+      iif "eth0" udp dport { 40000, 41641 } accept
+      iif "wlan1" udp dport { 53, 67, 1900, 5351 } accept
+      iif "wlan1" tcp dport 53 accept
+      iif "tailscale0" accept
+      ip protocol icmp accept
+      ip6 nexthdr ipv6-icmp accept
+    }
 
-	chain forward {
-		type filter hook forward priority filter; policy drop;
-		ct state established,related accept
-		jump forwardUPnP
-		iif "wlan1" oif "eth0" accept
-		iif "tailscale0" oif "wlan1" accept
-		iif "wlan1" oif "tailscale0" accept
-		iif "eth0" oif "wlan1" ct status dnat accept
-		ip protocol icmp accept
-	}
+    chain forward {
+      type filter hook forward priority filter; policy drop;
+      ct state established,related accept
+      jump forwardUPnP
+      iif "wlan1" oif "eth0" accept
+      iif "tailscale0" oif "wlan1" accept
+      iif "wlan1" oif "tailscale0" accept
+      iif "eth0" oif "wlan1" ct status dnat accept
+      ip protocol icmp accept
+    }
 
-	chain output {
-		type filter hook output priority filter; policy accept;
-	}
+    chain output {
+      type filter hook output priority filter; policy accept;
+    }
 
-	chain forwardUPnP {
-		iif "eth0" th dport 41641 @nh,128,32 0xc0a832a7 @nh,72,8 0x11 accept
-	}
+    chain forwardUPnP {
+      iif "eth0" th dport 41641 @nh,128,32 0xc0a832a7 @nh,72,8 0x11 accept
+    }
 
-	chain prerouting {
-		type nat hook prerouting priority dstnat; policy accept;
-		jump UPnP
-	}
+    chain prerouting {
+      type nat hook prerouting priority dstnat; policy accept;
+      jump UPnP
+    }
 
-	chain postrouting {
-		type nat hook postrouting priority srcnat; policy accept;
-		jump UPnP_Postrouting
-		oif "eth0" ip saddr 192.168.50.0/24 masquerade
-		oif "tailscale0" ip saddr 192.168.50.0/24 masquerade
-	}
+    chain postrouting {
+      type nat hook postrouting priority srcnat; policy accept;
+      jump UPnP_Postrouting
+      oif "eth0" ip saddr 192.168.50.0/24 masquerade
+      oif "tailscale0" ip saddr 192.168.50.0/24 masquerade
+    }
 
-	chain UPnP {
-		iif "eth0" @nh,72,8 0x11 th dport 41643 dnat ip to 192.168.50.167:41641
-	}
+    chain UPnP {
+      iif "eth0" @nh,72,8 0x11 th dport 41643 dnat ip to 192.168.50.167:41641
+    }
 
-	chain UPnP_Postrouting {
-	}
+    chain UPnP_Postrouting {
+    }
 }
 ```
 
@@ -710,14 +716,14 @@ but a custom kernel may still be needed. See:
 `ath11k` is relevant for QCM865 as well and may not be fully enabled in your default
 Raspberry Pi OS kernel build.
 
+> [!TIP]
 > Mar 14 2026: Pi5 PCie can only provide limited power, so even if you got a strong card you might not be able to power
-it. Don't expect Pi to be a good at AP. Buy a cheap router and flash OpenWrt, and set that router
-as an AP. Why not just use a router? Normal router has limited system resources, but pi isn't you can do more customization.
+> it. Don't expect Pi to be a good at AP. Buy a cheap router and flash OpenWrt, and set that router
+> as an AP. Why not just use a router? Normal router has limited system resources, but pi isn't you can do more customization.
 
 <figure style="text-align:center;">
   <img src="/assets/2026-03-05-resources/1.avif" alt="Pi router" style="width:50%;max-width:440px;display:block;margin:0 auto;" />
 </figure>
-
 
 <figure style="text-align:center;">
   <img src="/assets/2026-03-05-resources/2.avif" alt="Pi router" style="width:50%;max-width:440px;display:block;margin:0 auto;" />
