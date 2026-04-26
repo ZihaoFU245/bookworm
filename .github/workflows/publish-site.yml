@@ -51,3 +51,10 @@ jobs:
         run: |
           chmod +x ./publish.sh
           ./publish.sh
+
+      - name: Deploy site
+        env:
+          PUBLISH_SITE_TOKEN: ${{ secrets.PUBLISH_SITE_TOKEN }}
+        run: |
+          curl -fsS -X POST https://zihaofu245.me/__deploy/bookworm \
+            -H "Authorization: Bearer $PUBLISH_SITE_TOKEN"
