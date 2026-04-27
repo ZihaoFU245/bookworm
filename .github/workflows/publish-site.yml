@@ -38,8 +38,8 @@ jobs:
 
       - name: Compress assets
         run: |
-          chmod +x ./compress.sh
-          ./compress.sh
+          chmod +x ./auto/compress.sh
+          ./auto/compress.sh
 
       - name: Copy LFS rules into publish directory
         run: cp .gitattributes dist/.gitattributes
@@ -49,12 +49,13 @@ jobs:
           BRANCH: site
           SITE_DIR: ./dist
         run: |
-          chmod +x ./publish.sh
-          ./publish.sh
+          chmod +x ./auto/publish.sh
+          ./auto/publish.sh
 
       - name: Deploy site
         env:
           PUBLISH_SITE_TOKEN: ${{ secrets.PUBLISH_SITE_TOKEN }}
+          ORIGIN_IP: ${{ secrets.ORIGIN_IP }}
         run: |
-          curl -fsS -X POST https://zihaofu245.me/__deploy/bookworm \
-            -H "Authorization: Bearer $PUBLISH_SITE_TOKEN"
+          chmod +x ./auto/push.sh
+          ./auto/push.sh

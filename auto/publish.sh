@@ -27,24 +27,27 @@ trap cleanup EXIT
 
 cp -a "$SITE_DIR"/. "$source_tmp"/
 
-if git ls-remote --exit-code --heads "$REMOTE" "$BRANCH" >/dev/null 2>&1; then
-  git fetch "$REMOTE" "$BRANCH"
-  git worktree add --detach "$worktree_dir" "FETCH_HEAD"
-else
-  git worktree add --detach "$worktree_dir" HEAD
-  git -C "$worktree_dir" switch --orphan "$BRANCH"
-fi
+# Create a temporary detached worktree from current HEAD.
+# Then create a brand-new orphan branch inside it.
+git worktree add --detach "$worktree_dir" HEAD
+git -C "$worktree_dir" switch --orphan "$BRANCH"
 
+# Remove all files inherited from HEAD.
+git -C "$worktree_dir" rm -rf . >/dev/null 2>&1 || true
 find "$worktree_dir" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+
+# Copy built site only.
 cp -a "$source_tmp"/. "$worktree_dir"/
 touch "$worktree_dir/.nojekyll"
 
 git -C "$worktree_dir" add -A
 
 if git -C "$worktree_dir" diff --cached --quiet; then
-  echo "No changes to publish"
+  echo "No files to publish"
   exit 0
 fi
 
 git -C "$worktree_dir" commit -m "Deploy site from ${COMMIT_SHA}"
+
+# Force-push one fresh root commit to site branch.
 git -C "$worktree_dir" push "$REMOTE" HEAD:"$BRANCH" --force
