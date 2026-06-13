@@ -1,0 +1,48 @@
+{
+  "name": "bookworm-light-astro",
+  "version": "4.0.1",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier -w .",
+    "check": "astro check",
+    "deploy:cf-workers": "npm run build && wrangler deploy",
+    "preview:cf-workers": "npm run build && wrangler dev"
+  },
+  "dependencies": {
+    "@astrojs/check": "0.9.9",
+    "@astrojs/markdown-remark": "7.2.0",
+    "@astrojs/react": "5.0.7",
+    "@astrojs/sitemap": "3.7.3",
+    "@digi4care/astro-google-tagmanager": "^2.0.0",
+    "astro": "6.4.4",
+    "date-fns": "^4.4.0",
+    "fuse.js": "^7.4.2",
+    "github-slugger": "^2.0.0",
+    "marked": "^18.0.5",
+    "mdast-util-to-string": "^4.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-icons": "^5.6.0",
+    "unist-util-visit": "^5.0.0",
+    "vite": "^7.3.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "19.2.3",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "sharp": "0.34.5",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.98.0"
+  }
+}

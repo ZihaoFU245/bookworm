@@ -1,0 +1,38 @@
+---
+import Posts from "@/components/Posts.astro";
+import Base from "@/layouts/Base.astro";
+import AuthorSingle from "@/partials/AuthorSingle.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import { getEntry } from "astro:content";
+
+const posts = sortByDate(await getSinglePage("posts"));
+const featuredPosts = posts.slice(0, 4);
+const author = await getEntry("authors", "zihao-fu");
+---
+
+<Base title="Zihao Fu" description="Engineer and Computer Science student at HKUST.">
+  {author && <AuthorSingle author={author} />}
+
+  <section class="section pt-0">
+    <div class="container">
+      <div class="mb-10 flex items-end justify-between gap-4">
+        <div>
+          <p class="mb-2 text-sm uppercase tracking-[0.22em] text-text">Blog</p>
+          <h2 class="h3">Recent posts</h2>
+        </div>
+        <a href="/blog" class="text-primary">See all posts</a>
+      </div>
+      <Posts posts={featuredPosts} className="mb-0" fluid={false} />
+    </div>
+    <div class="container">
+    <br><br>
+    <a href="https://www.buymeacoffee.com/zihaofu245" target="_blank" rel="noopener noreferrer"
+      title="Buy me a coffee" aria-label="Buy me a coffee" 
+      style="display: flex; justify-content: center; margin: 40px 0; align-items: center;">
+      <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee"
+          style="height:48px; width:auto; vertical-align:middle; border-radius:6px;">
+    </a>
+    </div>
+  </section>
+</Base>

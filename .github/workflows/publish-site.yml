@@ -1,0 +1,62 @@
+name: Publish Site
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          lfs: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Enable Git LFS
+        run: git lfs install
+
+      - name: Install dependencies
+        run: corepack yarn install --frozen-lockfile
+
+      - name: Build site
+        run: corepack yarn build
+
+      - name: Compress assets
+        run: |
+          chmod +x ./auto/compress.sh
+          ./auto/compress.sh
+
+      - name: Copy LFS rules into publish directory
+        run: cp .gitattributes dist/.gitattributes
+
+      - name: Publish dist to site branch
+        env:
+          BRANCH: site
+          SITE_DIR: ./dist
+        run: |
+          chmod +x ./auto/publish.sh
+          ./auto/publish.sh
+
+      - name: Deploy site
+        env:
+          PUBLISH_SITE_TOKEN: ${{ secrets.PUBLISH_SITE_TOKEN }}
+          ORIGIN_IP: ${{ secrets.ORIGIN_IP }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          chmod +x ./auto/push.sh
+          ./auto/push.sh
