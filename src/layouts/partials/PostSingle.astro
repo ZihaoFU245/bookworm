@@ -85,6 +85,9 @@ const { title, description, authors, categories, image, date, tags } =
               height={500}
               width={1000}
               alt={title}
+              loading="eager"
+              fetchpriority="high"
+              decoding="sync"
               class="rounded-lg"
             />
           )
