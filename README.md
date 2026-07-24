@@ -7,25 +7,25 @@ Personal site built with Astro.
 Install dependencies:
 
 ```bash
-npm install
+yarn install
 ```
 
 Start the dev server:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 Build the site:
 
 ```bash
-npm run build
+yarn build
 ```
 
 Run Astro checks:
 
 ```bash
-npm run check
+yarn run check
 ```
 
 ## Project Structure

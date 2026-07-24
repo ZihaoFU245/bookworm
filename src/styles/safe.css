@@ -18,5 +18,5 @@ input#nav-toggle:checked ~ #nav-menu {
 
 .form-input,
 .form-textarea {
-  @apply rounded-md border-border py-3 text-text focus:border-primary focus:ring-transparent;
+  @apply border-border text-text focus:border-primary rounded-md py-3 focus:ring-transparent;
 }

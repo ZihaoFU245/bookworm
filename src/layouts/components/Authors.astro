@@ -28,7 +28,7 @@ const { authors } = Astro.props;
         <h3 class="h4 mt-8 mb-3">
           <a
             href={`/authors/${author.id}`}
-            class="block hover:text-primary transition duration-200"
+            class="hover:text-primary block transition duration-200"
           >
             {author.data.title}
           </a>
@@ -39,7 +39,7 @@ const { authors } = Astro.props;
 
         <a
           href={`/authors/${author.id}`}
-          class="inline-flex items-center text-primary transition duration-200 hover:opacity-70"
+          class="text-primary inline-flex items-center transition duration-200 hover:opacity-70"
         >
           Read More <BsArrowRightCircle className="inline ml-2" />
         </a>

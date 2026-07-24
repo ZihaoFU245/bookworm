@@ -5,14 +5,14 @@
 
 /* container */
 .container {
-  @apply max-w-[1000px]! px-4! md:px-8! mx-auto;
+  @apply mx-auto max-w-[1000px]! px-4! md:px-8!;
 }
 
 /* page heading */
 .page-heading {
-  @apply mb-20 text-center font-bold leading-10;
+  @apply mb-20 text-center leading-10 font-bold;
   &:after {
-    @apply mx-auto mt-4 block h-1 w-10 rounded-full bg-primary content-[''];
+    @apply bg-primary mx-auto mt-4 block h-1 w-10 rounded-full content-[''];
   }
 }
 
@@ -41,7 +41,7 @@
   li {
     @apply inline-block;
     a {
-      @apply block h-11 w-11 rounded-lg border border-light bg-transparent text-center text-white transition hover:border-primary hover:bg-primary;
+      @apply border-light hover:border-primary hover:bg-primary block h-11 w-11 rounded-lg border bg-transparent text-center text-white transition;
       svg {
         @apply m-auto h-11 text-base;
       }
@@ -54,7 +54,7 @@
   li {
     @apply inline-block;
     a {
-      @apply block p-3 text-dark transition hover:text-primary;
+      @apply text-dark hover:text-primary block p-3 transition;
       svg {
         @apply text-lg;
       }
@@ -67,14 +67,14 @@
   li {
     @apply inline-block;
     a {
-      @apply block p-3 transition transition duration-300 hover:text-primary;
+      @apply hover:text-primary block p-3 transition duration-300;
     }
   }
 }
 
 /* content style */
 .content {
-  @apply prose max-w-none prose-headings:font-bold prose-h1:mb-4 prose-h1:text-h1-sm prose-h2:mb-4 prose-h2:mt-4 prose-h2:text-h2-sm prose-h3:mt-4 prose-h3:text-h3-sm prose-h4:mt-4 prose-h5:mb-4 prose-h6:mb-6 prose-blockquote:rounded-lg prose-blockquote:border-primary prose-blockquote:bg-light prose-blockquote:px-7 prose-blockquote:py-3 prose-blockquote:text-lg prose-blockquote:leading-8 prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:px-6 prose-pre:py-5 md:prose-h1:text-h1 md:prose-h2:text-h2 md:prose-h3:text-h3;
+  @apply prose prose-headings:font-bold prose-h1:mb-4 prose-h1:text-h1-sm prose-h2:mb-4 prose-h2:mt-4 prose-h2:text-h2-sm prose-h3:mt-4 prose-h3:text-h3-sm prose-h4:mt-4 prose-h5:mb-4 prose-h6:mb-6 prose-blockquote:rounded-lg prose-blockquote:border-primary prose-blockquote:bg-light prose-blockquote:px-7 prose-blockquote:py-3 prose-blockquote:text-lg prose-blockquote:leading-8 prose-pre:max-w-full prose-pre:overflow-x-auto prose-pre:px-6 prose-pre:py-5 md:prose-h1:text-h1 md:prose-h2:text-h2 md:prose-h3:text-h3 max-w-none;
   @apply prose-a:text-primary prose-a:transition prose-a:duration-200 prose-a:hover:text-dark;
   @apply prose-img:rounded-lg;
   @apply prose-table:relative prose-table:overflow-hidden prose-table:rounded-lg prose-table:before:absolute prose-table:before:left-0 prose-table:before:top-0 prose-table:before:h-full prose-table:before:w-full prose-table:before:rounded-[inherit] prose-table:before:border prose-table:before:border-border prose-table:before:content-[""];
@@ -146,23 +146,23 @@
 
 /* tab */
 .tab {
-  @apply overflow-hidden rounded-lg border border-border;
+  @apply border-border overflow-hidden rounded-lg border;
 }
 
 .tab-nav {
-  @apply flex border-b border-border bg-light;
+  @apply border-border bg-light flex border-b;
   @apply m-0;
   @apply list-none;
 }
 
 .tab-nav-item {
-  @apply cursor-pointer border-b-[3px] border-border py-2 text-lg text-dark opacity-80;
+  @apply border-border text-dark cursor-pointer border-b-[3px] py-2 text-lg opacity-80;
   @apply my-0;
   @apply px-8;
 }
 
 .tab-nav-item.active {
-  @apply border-b-[3px] border-dark opacity-100;
+  @apply border-dark border-b-[3px] opacity-100;
 }
 
 .tab-content-panel {
@@ -179,11 +179,11 @@
 
 /* accordion */
 .accordion {
-  @apply mb-6 overflow-hidden rounded-lg border border-border bg-light;
+  @apply border-border bg-light mb-6 overflow-hidden rounded-lg border;
 }
 
 .accordion-header {
-  @apply flex w-full cursor-pointer items-center justify-between px-8 py-4 text-lg text-dark;
+  @apply text-dark flex w-full cursor-pointer items-center justify-between px-8 py-4 text-lg;
 }
 
 .accordion-icon {
@@ -216,7 +216,7 @@
 }
 
 .notice-head p {
-  @apply font-primary text-xl font-semibold text-dark;
+  @apply font-primary text-dark text-xl font-semibold;
 }
 
 .notice-body {

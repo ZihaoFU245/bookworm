@@ -12,10 +12,13 @@ const totalPages = Math.ceil(posts.length / BLOG_POSTS_PER_PAGE);
 const currentPosts = sortedPosts.slice(0, BLOG_POSTS_PER_PAGE);
 ---
 
-<Base title="Blog" description="Posts on systems, infrastructure, learning, and life.">
+<Base
+  title="Blog"
+  description="Posts on systems, infrastructure, learning, and life."
+>
   <section class="section">
     <div class="container">
-      <blockquote class="mb-8 border-l-4 border-primary pl-4 text-lg text-text">
+      <blockquote class="border-primary text-text mb-8 border-l-4 pl-4 text-lg">
         This page is updated frequently.
       </blockquote>
       <h2 class="h2 mb-10">Collection of all my blog posts</h2>

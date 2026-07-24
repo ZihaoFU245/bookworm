@@ -22,18 +22,25 @@ const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 
       <h2 class="h3 mb-5">Posts By Year</h2>
       <div class="space-y-10">
-        {years.map((year) => (
-          <section>
-            <h3 class="mb-4 text-2xl font-semibold">{year}</h3>
-            <ul class="space-y-3">
-              {postsByYear[year].map((post) => (
-                <li>
-                  <a href={`/blog/${post.id}`} class="font-semibold hover:text-primary">{post.data.title}</a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+        {
+          years.map((year) => (
+            <section>
+              <h3 class="mb-4 text-2xl font-semibold">{year}</h3>
+              <ul class="space-y-3">
+                {postsByYear[year].map((post) => (
+                  <li>
+                    <a
+                      href={`/blog/${post.id}`}
+                      class="hover:text-primary font-semibold"
+                    >
+                      {post.data.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
       </div>
     </div>
   </section>

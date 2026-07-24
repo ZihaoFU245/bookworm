@@ -1,0 +1,6 @@
+.astro/
+.sitepins/
+dist/
+node_modules/
+public/
+src/content/
