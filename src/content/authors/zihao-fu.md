@@ -10,4 +10,4 @@ social:
   x: "https://x.com/zihaofu245"
 ---
 
-Engineer, Computer Science student at HKUST, and builder interested in AI, systems, and practical software.
+Engineer, Math Comp Sci student at HKUST.

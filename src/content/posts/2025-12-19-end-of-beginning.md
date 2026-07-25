@@ -9,6 +9,16 @@ authors:
 draft: false
 ---
 
+---
+
+**!DEPRECATED**
+
+Jul 25, 2026:
+
+Pointless thing, boring logging of my grew up journey, stupid. Stupid Xmas tree.
+
+---
+
 > <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3qhlB30KknSejmIvZZLjOD?utm_source=generator" width="100%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 > A song I recently like
 

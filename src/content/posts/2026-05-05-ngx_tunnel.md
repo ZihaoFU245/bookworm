@@ -24,6 +24,32 @@ however, the support for 'proxy for the client' is still immature.
 
 ---
 
+**!DEPRECATED!**
+
+Jul 25, 2026:
+
+This module helped me learn nginx internals very well. But now there are
+better options. Many of the old thoughts are simply not good enough.
+
+`ngx_http_tunnel_module` from nginx OSS is a better option to use. It is lighter
+and can fulfill most of the requirements.
+
+```nginx
+location / {
+	if ( $request_method = CONNECT ) {
+		tunnel_pass;
+	}
+	# Other methods
+}
+```
+
+This can enable CONNECT with other methods simultaneously, application layer
+routing can be done this way. Now though it only supports HTTP/1.1, but adding
+H2 and H3 support is not too difficult. Patch nginx header parsing and u->upgrade
+will do. You can find the patch in nginx repo PR.
+
+---
+
 ## Table of contents
 
 ## What problem is it solving?
