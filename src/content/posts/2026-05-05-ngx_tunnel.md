@@ -26,7 +26,7 @@ however, the support for 'proxy for the client' is still immature.
 
 **!DEPRECATED!**
 
-Jul 25, 2026:
+**Jul 25, 2026:**
 
 This module helped me learn nginx internals very well. But now there are
 better options. Many of the old thoughts are simply not good enough.
@@ -47,6 +47,44 @@ This can enable CONNECT with other methods simultaneously, application layer
 routing can be done this way. Now though it only supports HTTP/1.1, but adding
 H2 and H3 support is not too difficult. Patch nginx header parsing and u->upgrade
 will do. You can find the patch in nginx repo PR.
+
+**Sep 7, 2026:**
+
+From nginx/1.31.5 version, it supports *predicate locations*, which provides a dynamic
+location block, instead of a location-if block, it makes configuration cleaner.
+
+```nginx
+map $request_methods $is_connect {
+	default 	0;
+	CONNECT		1;
+}
+
+server {
+	location / {
+		# Non CONNECT methods.
+		return 200 "Hello World";
+	}
+
+	location $is_connect {
+		tunnel_pass;
+		auth_basic "proxy";
+		auth_basic_uer_file REPLACE_ME;
+		error_page 407 =405 @probes;
+		# Other configurations
+		ssi off;
+		gzip off;
+	}
+
+	location @probes {
+		# Use headers_more module to clear out some headers
+		headers_more_clear "Proxy-Authenticate";
+		return 405;
+	}
+}
+```
+
+Above configurations makes it a proxy server, with probe resistance.
+Configuration with predicate locations makes it way cleaner then usual.
 
 ---
 
