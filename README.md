@@ -111,6 +111,62 @@ public/assets/2026-03-29-resources/
 ![Caption](/assets/2026-03-29-resources/example.jpg)
 ```
 
+## Photo Galleries
+
+Use the shared photo wall in any Markdown post. No per-post CSS or additional
+frontmatter is needed; the styles live in `src/styles/photo-gallery.css`.
+
+```md
+<section class="photo-group">
+
+### A place or a project
+
+<div class="photo-wall">
+  <a class="photo-tile" href="/assets/example/first.webp"><img src="/assets/example/first.webp" alt="Describe the first view" width="1600" height="1000" loading="lazy" decoding="async" /></a>
+  <a class="photo-tile" href="/assets/example/second.webp"><img src="/assets/example/second.webp" alt="Describe the second view" width="1600" height="1000" loading="lazy" decoding="async" /></a>
+</div>
+
+Write a caption or paragraph here.
+
+</section>
+```
+
+Keep the blank lines around Markdown headings and paragraphs inside the HTML
+section so they render as Markdown and headings appear in the TOC. Use each
+image's actual pixel dimensions to reserve space while it loads. Photos retain
+their original proportions, flow down each column, and link to the full-size
+file. Walls collapse to one column on narrow screens; a single photo uses the
+full width. Start a new wall for each related set of photos.
+
+For a more varied wall of similarly shaped images, use two explicit columns:
+
+```html
+<div class="photo-wall photo-wall--varied">
+  <div class="photo-columns">
+    <div class="photo-column">
+      <!-- First half of the photo-tile links -->
+    </div>
+    <div class="photo-column">
+      <!-- Remaining photo-tile links -->
+    </div>
+  </div>
+</div>
+```
+
+On wider walls, the first column is wider and the second starts slightly lower.
+Each column flows independently, creating different image sizes and staggered
+edges while preserving every photo's original proportions and complete frame.
+Split the photos into two roughly balanced groups, in reading order (down the
+first column, then the second). Narrow walls stack the groups into one column.
+Both variants use static HTML and CSS: no gallery JavaScript, runtime
+randomization, cropping, or extra image requests. Actual image dimensions reserve
+space before lazy-loaded images arrive. The Minecraft Scenery section is a
+complete example.
+
+For video, use a `<div class="photo-tile">` containing a `<video>` with
+`controls playsinline preload="none"`, a poster, and its actual width and height.
+The Netherlands and September 8 Minecraft posts are complete examples.
+
 ## Headings And TOC
 
 Custom heading ids are supported:

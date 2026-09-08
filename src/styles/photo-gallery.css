@@ -1,0 +1,73 @@
+/* Shared photo walls for Markdown posts. Keep media at its natural ratio. */
+.content .photo-group {
+  margin: 2.25rem 0;
+}
+
+.content .photo-group :is(h2, h3, h4) {
+  margin: 0 0 0.9rem;
+  color: #475569;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.content .photo-wall {
+  columns: 18rem;
+  column-gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.content .photo-tile {
+  display: block;
+  margin: 0 0 0.65rem;
+  break-inside: avoid;
+  border-radius: 8px;
+}
+
+.content a.photo-tile:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Override prose image/video margins so gaps remain consistent. */
+.content .photo-tile :is(img, video) {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: inherit;
+  background: #f1f5f9;
+}
+
+/* A lone image should stay large enough to read. */
+.content .photo-wall:has(> .photo-tile:only-child) {
+  columns: 1;
+}
+
+/* Unequal column widths vary photo sizes without cropping or stretching.
+   Columns are authored in HTML; no client-side layout script is needed. */
+.content .photo-wall--varied {
+  columns: auto;
+  container-type: inline-size;
+}
+
+.content .photo-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.65rem;
+}
+
+.content .photo-column {
+  min-width: 0;
+}
+
+/* Each column flows independently, so tile edges need not line up. */
+@container (min-width: 37rem) {
+  .content .photo-wall--varied > .photo-columns {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+
+  .content .photo-wall--varied > .photo-columns > .photo-column:nth-child(2) {
+    margin-top: 2rem;
+  }
+}

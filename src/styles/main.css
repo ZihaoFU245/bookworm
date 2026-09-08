@@ -13,6 +13,7 @@
 
 @layer components {
   @import "./components.css";
+  @import "./photo-gallery.css";
   @import "./navigation.css";
   @import "./buttons.css";
 }
