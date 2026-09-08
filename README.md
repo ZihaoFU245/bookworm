@@ -138,6 +138,21 @@ their original proportions, flow down each column, and link to the full-size
 file. Walls collapse to one column on narrow screens; a single photo uses the
 full width. Start a new wall for each related set of photos.
 
+For large albums, use `class="photo-wall photo-wall--compact"` with the same
+`photo-tile` links. It fits up to five columns with smaller gaps, usually two
+columns on phones, and preserves the original image proportions. The January 15
+travel album is a complete example. Use `loading="lazy"` and actual image
+dimensions so offscreen photos can wait without changing the layout as they load.
+For large source files, point each image's `src` to a smaller preview and keep its
+link's `href` pointing to the original. January's previews are 480px-wide WebP
+files (quality 75) under `public/assets/2026-1-15-resources/thumbnails/`, generated
+ahead of time with Sharp. Preview images must retain the original proportions.
+
+Add `photo-wall--scattered` alongside `photo-wall--compact` for the January
+album's tabletop effect: small rotations, varied insets, and vertical spacing.
+The irregular pattern is fixed in CSS, so resizing reflows the columns without
+runtime randomization or waiting for image loads. Original proportions stay intact.
+
 For a more varied wall of similarly shaped images, use two explicit columns:
 
 ```html

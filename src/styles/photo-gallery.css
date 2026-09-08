@@ -44,6 +44,73 @@
   columns: 1;
 }
 
+/* Dense albums: up to five columns, with smaller gutters and natural ratios. */
+.content .photo-wall--compact {
+  columns: 8rem 5;
+  column-gap: 0.4rem;
+}
+
+.content .photo-wall--compact > .photo-tile {
+  margin-bottom: 0.4rem;
+  border-radius: 5px;
+}
+
+/* A fixed, irregular pattern gives albums a tabletop feel without runtime
+   randomness. Padding reserves the offsets before lazy images arrive. */
+.content .photo-wall--scattered {
+  padding: 0.5rem 0.5rem 1rem;
+  column-gap: 0.75rem;
+}
+
+.content .photo-wall--scattered > .photo-tile {
+  --photo-angle: -1.4deg;
+  --photo-offset: 0.15rem;
+  --photo-inset: 1%;
+  padding: var(--photo-offset) var(--photo-inset) 0;
+  margin-bottom: 0.8rem;
+  transform: rotate(var(--photo-angle));
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 2) {
+  --photo-angle: 1.8deg;
+  --photo-offset: 0.9rem;
+  --photo-inset: 3%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 3) {
+  --photo-angle: -0.6deg;
+  --photo-offset: 0.4rem;
+  --photo-inset: 0%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 4) {
+  --photo-angle: 1.1deg;
+  --photo-offset: 1.3rem;
+  --photo-inset: 2%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 5) {
+  --photo-angle: -1.9deg;
+  --photo-offset: 0.65rem;
+  --photo-inset: 0%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 6) {
+  --photo-angle: 0.5deg;
+  --photo-offset: 0.2rem;
+  --photo-inset: 3%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n) {
+  --photo-angle: 1.5deg;
+  --photo-offset: 1rem;
+  --photo-inset: 1%;
+}
+
+.content .photo-wall--scattered > .photo-tile img {
+  box-shadow: 0 2px 5px rgb(15 23 42 / 18%);
+}
+
 /* Unequal column widths vary photo sizes without cropping or stretching.
    Columns are authored in HTML; no client-side layout script is needed. */
 .content .photo-wall--varied {
