@@ -14,6 +14,7 @@
 @layer components {
   @import "./components.css";
   @import "./photo-gallery.css";
+  @import "./3js.css";
   @import "./navigation.css";
   @import "./buttons.css";
 }

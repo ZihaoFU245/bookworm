@@ -9,7 +9,7 @@ if [ -z "$ORIGIN_IP" ]; then
 fi
 
 if [ -z "$DEPLOY_PATH" ]; then
-  echo "Error: Path value is nto set"
+  echo "Error: DEPLOY_PATH is not set."
   exit 1
 fi
 

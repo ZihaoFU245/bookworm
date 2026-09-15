@@ -1,0 +1,143 @@
+---
+import "@/styles/3js.css";
+
+const viewerBase = "/blog/models";
+export function getStaticPaths() {
+  const structures = [
+    {
+      slug: "villager-breeder",
+      name: "Villager Breeder",
+      file: "VillagerBreeder.glb",
+    },
+    { slug: "trading-hall", name: "Trading Hall", file: "TradingHall.glb" },
+    { slug: "iron-farm", name: "Iron Farm", file: "IronFarm.glb" },
+    { slug: "bamboo-farm", name: "Bamboo Farm", file: "BambooFarm.glb" },
+    { slug: "crop-farm", name: "Auto Crop Farm", file: "CropFarm.glb" },
+    { slug: "farm-house", name: "Farm House", file: "IkerFarm.glb" },
+    { slug: "long-house", name: "My Long House", file: "home.glb" },
+    { slug: "chicken-farm", name: "Chicken Farm", file: "ChickenFarm.glb" },
+    {
+      slug: "sugarcane-farm",
+      name: "Sugarcane Farm",
+      file: "SugarcaneFarm.glb",
+    },
+    {
+      slug: "teleport-circuit",
+      name: "Transporting Redstone Circuit",
+      file: "TeleportCircuit.glb",
+    },
+    { slug: "gold-farm", name: "Gold Farm", file: "GoldFarm.glb" },
+    { slug: "plaza", name: "Plaza", file: "Plaza.glb" },
+    { slug: "cactus-farm", name: "Cactus Farm", file: "CactusFarm.glb" },
+    { slug: "kelp-farm", name: "Kelp Farm", file: "KelpFarm.glb" },
+    { slug: "furnace", name: "Furnace", file: "Furnace.glb" },
+    { slug: "mob-tower", name: "Mob Tower", file: "MobTower.glb" },
+    { slug: "raid-farm", name: "Raid Farm", file: "RaidFarm.glb" },
+  ] as const;
+
+  return structures.map((structure) => ({
+    params: { model: structure.slug },
+    props: { structure, structures },
+  }));
+}
+const { structure, structures } = Astro.props;
+const modelUrl = `/assets/2026-09-07-resources/glbs/${structure.file}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={`Explore ${structure.name}.`} />
+    <title>{structure.name} in 3D</title>
+  </head>
+  <body class="structure-viewer-page">
+    <main id="structure-viewer" data-model-url={modelUrl}>
+      <canvas
+        id="scene"
+        tabindex="0"
+        aria-label={`Fly through ${structure.name}. Click to capture the mouse. WASD to move, Space to rise, Shift to descend, R to toggle boost, Escape to release the mouse.`}
+      ></canvas>
+      <header class="viewer-header">
+        <h1 class="sr-only">{structure.name}</h1>
+        <label class="model-picker"
+          ><span class="sr-only">Explore a structure</span>
+          <select id="model-picker" aria-label="Explore a structure">
+            {
+              structures.map((item) => (
+                <option
+                  value={`${viewerBase}/${item.slug}`}
+                  selected={item.slug === structure.slug}
+                >
+                  {item.name}
+                </option>
+              ))
+            }
+          </select>
+        </label>
+      </header>
+      <aside class="viewer-tools" aria-label="Viewer controls">
+        <button id="reset" disabled>Reset view</button>
+        <details class="controls-menu">
+          <summary>Controls</summary>
+          <div class="controls-panel panel">
+            <button id="fly" disabled>Resume mouse-look</button>
+            <button id="boost" aria-pressed="false">Boost: off (R)</button>
+            <label
+              >Speed <input
+                id="speed"
+                type="range"
+                min="0.2"
+                max="4"
+                value="1"
+                step="0.1"
+              /></label
+            >
+            <label
+              >Detail <select id="quality"
+                ><option value="1">Balanced</option><option value="0.7"
+                  >Low power</option
+                ><option value="sharp" selected>Sharp</option></select
+              ></label
+            >
+            <label class="check-label"
+              ><input id="two-sided" type="checkbox" checked /> Show both sides of
+              thin surfaces</label
+            >
+            <p class="help">
+              WASD: move<br />
+              Space/Shift : Up/Down<br />
+              R: sprint<br />
+              Esc: release mouse
+            </p>
+          </div>
+        </details>
+      </aside>
+      <div id="loading" class="loading panel" role="status" aria-live="polite">
+        <h2 id="loading-title">Loading {structure.name}</h2>
+        <progress id="load-progress" aria-label="Model download progress"
+        ></progress>
+        <button id="retry" hidden>Try again</button>
+      </div>
+      <div class="crosshair" aria-hidden="true"></div>
+      <nav class="touch-movement panel" aria-label="Camera movement">
+        <button data-move="KeyW" aria-label="Move forward">↑</button>
+        <button data-move="KeyS" aria-label="Move backward">↓</button>
+        <button data-move="KeyA" aria-label="Move left">←</button>
+        <button data-move="KeyD" aria-label="Move right">→</button>
+        <button data-move="Space" aria-label="Move up">Up</button>
+        <button data-move="ShiftLeft" aria-label="Move down">Down</button>
+      </nav>
+      <noscript
+        ><div class="loading panel">
+          Enable JavaScript to explore this 3D structure.
+        </div></noscript
+      >
+    </main>
+    <script>
+      import { startViewer } from "@/scripts/structure-viewer";
+      startViewer();
+    </script>
+  </body>
+</html>

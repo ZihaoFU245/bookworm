@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SITE_DIR="./dist"
+SITE_DIR="${SITE_DIR:-./dist}"
+COMPRESS_JOBS="${COMPRESS_JOBS:-2}"
 
 if [[ ! -d "$SITE_DIR" ]]; then
   echo "ERROR: site dir not found: $SITE_DIR" >&2
   exit 1
 fi
 
-if ! command -v brotli >/dev/null 2>&1 || ! command -v gzip >/dev/null 2>&1; then
-  echo "Installing dependencies..."
-  sudo apt-get update
-  sudo apt-get install -y brotli gzip
-fi
+for command in brotli gzip; do
+  command -v "$command" >/dev/null 2>&1 || {
+    echo "ERROR: required command not found: $command" >&2
+    exit 1
+  }
+done
 
 echo "Precompressing in: $SITE_DIR"
-echo "Generating: .br and .gz for text assets..."
-
-cd "$SITE_DIR"
+echo "Generating: .br and .gz for compressible assets..."
 
 compress_file() {
   local f="$1"
@@ -31,15 +31,16 @@ compress_file() {
 
 export -f compress_file
 
-find . -type f \( \
+find "$SITE_DIR" -type f \( \
   -name '*.html' -o \
   -name '*.css'  -o \
   -name '*.js'   -o \
   -name '*.json' -o \
   -name '*.svg'  -o \
   -name '*.xml'  -o \
-  -name '*.txt' \
+  -name '*.txt'  -o \
+  -name '*.glb' \
 \) -print0 |
-xargs -0 -P"$(nproc)" -I{} bash -c 'compress_file "$1"' _ "{}"
+xargs -0 -P"$COMPRESS_JOBS" -I{} bash -c 'compress_file "$1"' _ "{}"
 
 echo "Compression complete."

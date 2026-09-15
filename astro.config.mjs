@@ -13,7 +13,12 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   image: { service: sharpImageService() },
-  vite: { plugins: [tailwindcss()] },
+  vite: {
+    plugins: [tailwindcss()],
+    // Three.js core is isolated to model-viewer routes. GLTFLoader is split
+    // separately; the remaining renderer chunk is about 563 kB.
+    build: { chunkSizeWarningLimit: 600 },
+  },
   integrations: [react(), sitemap()],
   markdown: {
     processor: unified({
