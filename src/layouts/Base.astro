@@ -40,11 +40,9 @@ const googleTagManagerScript = `
 <html lang="en">
   <head>
     <!-- google tag manager -->
-    {
-      config.google_tag_manager.enable && googleTagManagerId && (
-        <script is:inline set:html={googleTagManagerScript} />
-      )
-    }
+    {config.google_tag_manager.enable && googleTagManagerId && (
+      <script is:inline set:html={googleTagManagerScript}></script>
+    )}
 
     <!-- favicon -->
     <link rel="shortcut icon" href={config.site.favicon} />
@@ -148,19 +146,17 @@ const googleTagManagerScript = `
   </head>
   <body>
     {/* google tag manager noscript */}
-    {
-      config.google_tag_manager.enable && googleTagManagerId && (
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
-            height="0"
-            width="0"
-            style="display:none;visibility:hidden"
-            title="Google Tag Manager"
-          />
-        </noscript>
-      )
-    }
+    {config.google_tag_manager.enable && googleTagManagerId && (
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
+          height="0"
+          width="0"
+          style="display:none;visibility:hidden"
+          title="Google Tag Manager"
+        ></iframe>
+      </noscript>
+    )}
 
     <TwSizeIndicator />
     <Header />

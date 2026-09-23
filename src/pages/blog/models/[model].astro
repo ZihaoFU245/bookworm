@@ -61,54 +61,65 @@ const modelUrl = `/assets/2026-09-07-resources/glbs/${structure.file}`;
       ></canvas>
       <header class="viewer-header">
         <h1 class="sr-only">{structure.name}</h1>
-        <label class="model-picker"
-          ><span class="sr-only">Explore a structure</span>
+        <label class="model-picker">
+          <span class="sr-only">Explore a structure</span>
           <select id="model-picker" aria-label="Explore a structure">
-            {
-              structures.map((item) => (
-                <option
-                  value={`${viewerBase}/${item.slug}`}
-                  selected={item.slug === structure.slug}
-                >
-                  {item.name}
-                </option>
-              ))
-            }
+            {structures.map((item) => (
+              <option
+                value={`${viewerBase}/${item.slug}`}
+                selected={item.slug === structure.slug}
+              >
+                {item.name}
+              </option>
+            ))}
           </select>
         </label>
       </header>
       <aside class="viewer-tools" aria-label="Viewer controls">
-        <button id="reset" disabled>Reset view</button>
+        <button id="reset" disabled>
+          Reset view
+        </button>
         <details class="controls-menu">
           <summary>Controls</summary>
           <div class="controls-panel panel">
-            <button id="fly" disabled>Resume mouse-look</button>
-            <button id="boost" aria-pressed="false">Boost: off (R)</button>
-            <label
-              >Speed <input
+            <button id="fly" disabled>
+              Resume mouse-look
+            </button>
+            <button id="boost" aria-pressed="false">
+              Boost: off (R)
+            </button>
+            <label>
+              Speed{" "}
+              <input
                 id="speed"
                 type="range"
                 min="0.2"
                 max="4"
                 value="1"
                 step="0.1"
-              /></label
-            >
-            <label
-              >Detail <select id="quality"
-                ><option value="1">Balanced</option><option value="0.7"
-                  >Low power</option
-                ><option value="sharp" selected>Sharp</option></select
-              ></label
-            >
-            <label class="check-label"
-              ><input id="two-sided" type="checkbox" checked /> Show both sides of
-              thin surfaces</label
-            >
+              />
+            </label>
+            <label>
+              Detail{" "}
+              <select id="quality">
+                <option value="1">Balanced</option>
+                <option value="0.7">Low power</option>
+                <option value="sharp" selected>
+                  Sharp
+                </option>
+              </select>
+            </label>
+            <label class="check-label">
+              <input id="two-sided" type="checkbox" checked /> Show both sides
+              of thin surfaces
+            </label>
             <p class="help">
-              WASD: move<br />
-              Space/Shift : Up/Down<br />
-              R: sprint<br />
+              WASD: move
+              <br />
+              Space/Shift : Up/Down
+              <br />
+              R: sprint
+              <br />
               Esc: release mouse
             </p>
           </div>
@@ -116,24 +127,40 @@ const modelUrl = `/assets/2026-09-07-resources/glbs/${structure.file}`;
       </aside>
       <div id="loading" class="loading panel" role="status" aria-live="polite">
         <h2 id="loading-title">Loading {structure.name}</h2>
-        <progress id="load-progress" aria-label="Model download progress"
+        <progress
+          id="load-progress"
+          aria-label="Model download progress"
         ></progress>
-        <button id="retry" hidden>Try again</button>
+        <button id="retry" hidden>
+          Try again
+        </button>
       </div>
       <div class="crosshair" aria-hidden="true"></div>
       <nav class="touch-movement panel" aria-label="Camera movement">
-        <button data-move="KeyW" aria-label="Move forward">↑</button>
-        <button data-move="KeyS" aria-label="Move backward">↓</button>
-        <button data-move="KeyA" aria-label="Move left">←</button>
-        <button data-move="KeyD" aria-label="Move right">→</button>
-        <button data-move="Space" aria-label="Move up">Up</button>
-        <button data-move="ShiftLeft" aria-label="Move down">Down</button>
+        <button data-move="KeyW" aria-label="Move forward">
+          ↑
+        </button>
+        <button data-move="KeyS" aria-label="Move backward">
+          ↓
+        </button>
+        <button data-move="KeyA" aria-label="Move left">
+          ←
+        </button>
+        <button data-move="KeyD" aria-label="Move right">
+          →
+        </button>
+        <button data-move="Space" aria-label="Move up">
+          Up
+        </button>
+        <button data-move="ShiftLeft" aria-label="Move down">
+          Down
+        </button>
       </nav>
-      <noscript
-        ><div class="loading panel">
+      <noscript>
+        <div class="loading panel">
           Enable JavaScript to explore this 3D structure.
-        </div></noscript
-      >
+        </div>
+      </noscript>
     </main>
     <script>
       import { startViewer } from "@/scripts/structure-viewer";
