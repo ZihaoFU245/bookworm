@@ -13,19 +13,17 @@ const tags = await getTaxonomy("posts", "tags");
     <div class="container text-center">
       <h1 class="h2 page-heading">Tags</h1>
       <ul class="space-x-4">
-        {
-          tags.map((tag) => (
-            <li class="inline-block">
-              <a
-                href={`/tags/${tag}`}
-                class="bg-light text-dark hover:bg-primary group flex items-center rounded-lg px-4 py-2 transition hover:text-white"
-              >
-                <FaHashtag className="mr-1 text-primary group-hover:text-white transition" />
-                {humanize(tag || "")}
-              </a>
-            </li>
-          ))
-        }
+        {tags.map((tag) => (
+          <li class="inline-block">
+            <a
+              href={`/tags/${tag}`}
+              class="bg-light text-dark hover:bg-primary group flex items-center rounded-lg px-4 py-2 transition hover:text-white"
+            >
+              <FaHashtag className="mr-1 text-primary group-hover:text-white transition" />
+              {humanize(tag || "")}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
