@@ -1,29 +1,19 @@
 ---
-title: "About Me"
+title: ":>:>:=>:>))"
 meta_title: "About"
 image: "/assets/images/profile.jpg"
 draft: false
 ---
 
-#### Who I Am
+#### ME!
 
-A Math, Computer Science student at the Hong Kong University of Science and Technology (HKUST).
-An independent developer.
+Math, Computer Science student at the Hong Kong University of Science and Technology (HKUST).
 
-#### What I Like
-
-- Networking/IT, running my own servers
-- Use open source free softwares
-- Gaming (Minecraft, God of War ... )
-- Movie/Series (Rick and Morty ... )
-- Travelling
-- Fedora
-
-
-#### What I Prefer
-
-- Don't feed me MicroSlop
-
+- Self hosting. (Karakeep, ddns, this website)
+- Builder (My own router)
+- Linux/BSD
+- Play Minecraft, Red Stone
+- Library person
 
 <figure style="text-align:center;">
   <img src="/assets/2026-1-28-resources/homeServer.avif" alt="Pi router" style="width:100%;max-width:1000px;display:block;margin:0 auto;" />
@@ -36,9 +26,9 @@ An independent developer.
 <div style="text-align:center; font-size:0.85rem;color:#64748b;margin-top:.4rem;">Image in Bergen</div>
 
 <figure style="text-align:center;">
-  <img src="/assets/2026-04-04-resources/8.jpeg" alt="AC+AP networking" style="width:100%;max-width:1000px;display:block;margin:0 auto;" />
+  <img src="/assets/2026-03-05-resources/6.jpeg" alt="AC+AP networking" style="width:100%;max-width:1000px;display:block;margin:0 auto;" />
 </figure>
-<div style="text-align:center; font-size:0.85rem;color:#64748b;margin-top:.4rem;">Handmade router</div>
+<div style="text-align:center; font-size:0.85rem;color:#64748b;margin-top:.4rem;">My R0uter</div>
 
 <figure style="text-align:center;">
   <img src="/assets/2026-1-15-resources/madrid/1.avif" alt="un photo en madrid" style="width:50%;max-width:1000px;display:block;margin:0 auto;" />
