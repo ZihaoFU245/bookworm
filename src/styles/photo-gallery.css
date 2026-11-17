@@ -1,0 +1,140 @@
+/* Shared photo walls for Markdown posts. Keep media at its natural ratio. */
+.content .photo-group {
+  margin: 2.25rem 0;
+}
+
+.content .photo-group :is(h2, h3, h4) {
+  margin: 0 0 0.9rem;
+  color: #475569;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.content .photo-wall {
+  columns: 18rem;
+  column-gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.content .photo-tile {
+  display: block;
+  margin: 0 0 0.65rem;
+  break-inside: avoid;
+  border-radius: 8px;
+}
+
+.content a.photo-tile:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* Override prose image/video margins so gaps remain consistent. */
+.content .photo-tile :is(img, video) {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: inherit;
+  background: #f1f5f9;
+}
+
+/* A lone image should stay large enough to read. */
+.content .photo-wall:has(> .photo-tile:only-child) {
+  columns: 1;
+}
+
+/* Dense albums: up to five columns, with smaller gutters and natural ratios. */
+.content .photo-wall--compact {
+  columns: 8rem 5;
+  column-gap: 0.4rem;
+}
+
+.content .photo-wall--compact > .photo-tile {
+  margin-bottom: 0.4rem;
+  border-radius: 5px;
+}
+
+/* A fixed, irregular pattern gives albums a tabletop feel without runtime
+   randomness. Padding reserves the offsets before lazy images arrive. */
+.content .photo-wall--scattered {
+  padding: 0.5rem 0.5rem 1rem;
+  column-gap: 0.75rem;
+}
+
+.content .photo-wall--scattered > .photo-tile {
+  --photo-angle: -1.4deg;
+  --photo-offset: 0.15rem;
+  --photo-inset: 1%;
+  padding: var(--photo-offset) var(--photo-inset) 0;
+  margin-bottom: 0.8rem;
+  transform: rotate(var(--photo-angle));
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 2) {
+  --photo-angle: 1.8deg;
+  --photo-offset: 0.9rem;
+  --photo-inset: 3%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 3) {
+  --photo-angle: -0.6deg;
+  --photo-offset: 0.4rem;
+  --photo-inset: 0%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 4) {
+  --photo-angle: 1.1deg;
+  --photo-offset: 1.3rem;
+  --photo-inset: 2%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 5) {
+  --photo-angle: -1.9deg;
+  --photo-offset: 0.65rem;
+  --photo-inset: 0%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n + 6) {
+  --photo-angle: 0.5deg;
+  --photo-offset: 0.2rem;
+  --photo-inset: 3%;
+}
+
+.content .photo-wall--scattered > .photo-tile:nth-child(7n) {
+  --photo-angle: 1.5deg;
+  --photo-offset: 1rem;
+  --photo-inset: 1%;
+}
+
+.content .photo-wall--scattered > .photo-tile img {
+  box-shadow: 0 2px 5px rgb(15 23 42 / 18%);
+}
+
+/* Unequal column widths vary photo sizes without cropping or stretching.
+   Columns are authored in HTML; no client-side layout script is needed. */
+.content .photo-wall--varied {
+  columns: auto;
+  container-type: inline-size;
+}
+
+.content .photo-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.65rem;
+}
+
+.content .photo-column {
+  min-width: 0;
+}
+
+/* Each column flows independently, so tile edges need not line up. */
+@container (min-width: 37rem) {
+  .content .photo-wall--varied > .photo-columns {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+
+  .content .photo-wall--varied > .photo-columns > .photo-column:nth-child(2) {
+    margin-top: 2rem;
+  }
+}

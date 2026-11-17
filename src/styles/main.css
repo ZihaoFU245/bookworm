@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@plugin "../tailwind-plugin/tw-theme.mjs";
+@plugin "../tailwind-plugin/tw-bs-grid.mjs";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@import "./safe.css";
+@import "./utilities.css";
+
+@layer base {
+  @import "./base.css";
+}
+
+@layer components {
+  @import "./components.css";
+  @import "./photo-gallery.css";
+  @import "./3js.css";
+  @import "./navigation.css";
+  @import "./buttons.css";
+}

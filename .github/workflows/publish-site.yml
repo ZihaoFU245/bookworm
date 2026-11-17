@@ -1,0 +1,67 @@
+name: Publish Site
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          lfs: true
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.5.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Enable Git LFS
+        run: git lfs install
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Install compression tools
+        run: sudo apt-get update && sudo apt-get install -y brotli gzip
+
+      - name: Compress assets
+        run: |
+          chmod +x ./auto/compress.sh
+          ./auto/compress.sh
+
+      - name: Copy LFS rules into publish directory
+        run: cp .gitattributes dist/.gitattributes
+
+      - name: Publish dist to site branch
+        env:
+          BRANCH: site
+          SITE_DIR: ./dist
+        run: |
+          chmod +x ./auto/publish.sh
+          ./auto/publish.sh
+
+      - name: Deploy site
+        env:
+          PUBLISH_SITE_TOKEN: ${{ secrets.PUBLISH_SITE_TOKEN }}
+          ORIGIN_IP: ${{ secrets.ORIGIN_IP }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          chmod +x ./auto/push.sh
+          ./auto/push.sh

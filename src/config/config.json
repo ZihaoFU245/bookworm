@@ -1,0 +1,33 @@
+{
+  "site": {
+    "title": "Zihao Fu",
+    "base_url": "https://zihaofu245.me",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/assets/images/favicons/favicon.ico",
+    "logo": "",
+    "logo_width": "0",
+    "logo_height": "0",
+    "logo_text": "Zihao Fu"
+  },
+
+  "settings": {
+    "pagination": 24
+  },
+
+  "metadata": {
+    "meta_author": "Zihao Fu",
+    "meta_image": "/assets/images/profile.jpg",
+    "meta_description": "Engineer and CS student writing about systems, infrastructure, learning, and life."
+  },
+
+  "google_tag_manager": {
+    "enable": false,
+    "gtm_id": "GTM-XXXXXX"
+  },
+
+  "params": {
+    "copyright": "Copyright © 2026 Zihao Fu",
+    "themefiser_copyright": "Copyright (c) 2023 - Present, Themefisher"
+  }
+}

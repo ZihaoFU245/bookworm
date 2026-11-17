@@ -1,0 +1,46 @@
+{
+  "main": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog"
+    },
+    {
+      "name": "Archive",
+      "url": "/archive"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Resume",
+      "url": "/resume"
+    }
+  ],
+  "footer": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog"
+    },
+    {
+      "name": "Archive",
+      "url": "/archive"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Resume",
+      "url": "/resume"
+    }
+  ]
+}

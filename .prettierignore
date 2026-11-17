@@ -1,0 +1,7 @@
+.astro/
+.sitepins/
+dist/
+node_modules/
+pnpm-lock.yaml
+public/
+src/content/

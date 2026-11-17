@@ -1,0 +1,12 @@
+---
+title: "Zihao Fu"
+meta_title: "Zihao Fu"
+image: "/assets/images/profile.jpg"
+description: "Engineer and Computer Science student at HKUST."
+social:
+  github: "https://github.com/ZihaoFU245"
+  linkedin: "https://www.linkedin.com/in/zihao-fu-198b02374"
+  instagram: "https://www.instagram.com/zihao_fu06"
+---
+
+Engineer, Math Comp Sci student at HKUST.
